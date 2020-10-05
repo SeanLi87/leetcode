@@ -26,6 +26,6 @@ public class 除数博弈 {
 
     public static boolean pick(int N) {
 
-        return (N%2 == 0)?true:false;
+        return (N % 2 == 0) ? true : false;
     }
 }

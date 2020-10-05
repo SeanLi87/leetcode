@@ -1,16 +1,12 @@
-package com.sean.demo01;
+package com.sean.demo02;
 
-
-import java.lang.reflect.InvocationTargetException;
-import java.lang.reflect.Method;
 import java.util.Scanner;
 
-public class test1 {
-
+public class 水仙花数 {
     public static void main(String[] args) {
 
         Scanner sc = new Scanner(System.in);
-        while (sc.hasNext()){
+        while (sc.hasNext()) {
             int n = sc.nextInt();
             int m = sc.nextInt();
             int flag = 0;
@@ -19,21 +15,18 @@ public class test1 {
                 int sum = 0;
                 char[] chars = String.valueOf(i).toCharArray();
                 for (char aChar : chars) {
-                    int tmp = (aChar - '0')*(aChar - '0')*(aChar - '0');
+                    int tmp = (aChar - '0') * (aChar - '0') * (aChar - '0');
                     sum = sum + tmp;
                 }
-                if (sum == i){
-                    System.out.print(sum+ " ");
+                if (sum == i) {
+                    System.out.print(sum + " ");
                     flag++;
                 }
             }
-            if (flag == 0){
+            if (flag == 0) {
                 System.out.print("no");
             }
             System.out.println();
         }
-
     }
-
-
 }

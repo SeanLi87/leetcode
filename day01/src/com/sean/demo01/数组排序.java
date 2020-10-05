@@ -6,12 +6,18 @@ public class 数组排序 {
 
     public static void main(String[] args) {
 
-        int[] nums = new int[]{1, 2, 3, 4, 5};
+        int[] nums = new int[]{2,2};
 //        bubbleSort(nums);
 //        System.out.println("=======================");
 //        bubbleMarkSort(nums);
 
-        quickSort(nums, 0, 4);
+        test(nums, 0, nums.length - 1);
+        for (int num : nums) {
+            System.out.println(num);
+        }
+//        for (int anInt : ints) {
+//            System.out.println(anInt);
+//        }
 
 
 //        System.out.println(encode("7288628972886289Lx".getBytes()));
@@ -43,17 +49,17 @@ public class 数组排序 {
     // 3.因此最优时，只需要循环一次内循环，时间复杂度为O(n)
     private static void bubbleMarkSort(int[] nums) {
         for (int i = 0; i < nums.length - 1; i++) {
-            int targ = 1;
+            int targ = 0;
             for (int j = 0; j < nums.length - i - 1; j++) {
                 if (nums[j] > nums[j + 1]) {
                     int tmp = nums[j];
                     nums[j] = nums[j + 1];
                     nums[j + 1] = tmp;
-                    targ = 0;
+                    targ = 1;
                 }
                 System.out.println(j);
             }
-            if (targ == 1) {
+            if (targ == 0) {
                 break;
             }
         }
@@ -61,31 +67,60 @@ public class 数组排序 {
             System.out.println(nums[i]);
         }
     }
+
+
     //快速排序，给定基准数据
-
-    private static void quickSort(int[] s, int l, int r) {
+    public static void quickSort(int[] list, int l, int r) {
         if (l < r) {
-            //Swap(s[l], s[(l + r) / 2]); //将中间的这个数和第一个数交换 参见注1
-            int i = l, j = r, x = s[l];
+            int i = l, j = r, pivot = list[i];
             while (i < j) {
-                while (i < j && s[j] >= x) // 从右向左找第一个小于x的数
+                while (i < j && list[j] > pivot) {
                     j--;
-                if (i < j)
-                    s[i++] = s[j];
-
-                while (i < j && s[i] < x) // 从左向右找第一个大于等于x的数
+                }
+                if (i < j) {
+                    list[i] = list[j];
                     i++;
-                if (i < j)
-                    s[j--] = s[i];
+                }
+                while (i < j && list[i] < pivot) {
+                    i++;
+                }
+                if (i < j) {
+                    list[j] = list[i];
+                    j--;
+                }
             }
-            s[i] = x;
-            quickSort(s, l, i - 1); // 递归调用
-            quickSort(s, i + 1, r);
-        }
-        for (int i = s.length - 1; i >= 0; i--) {
-            System.out.println(s[i]);
+            list[i] = pivot;
+            quickSort(list,l,i-1);
+            quickSort(list,i+1,r);
         }
     }
+
+    public static void test(int[] list, int l ,int r){
+
+        if (l<r){
+            int i = l,j = r,pivot = list[i];
+            while (i<j){
+                while (i<j&&list[j]>pivot){
+                    j--;
+                }
+                if (i<j){
+                    list[i] = list[j];
+                    i++;
+                }
+                while (i<j&&list[i]<pivot){
+                    i++;
+                }
+                if (i<j){
+                    list[j] = list[i];
+                    j--;
+                }
+            }
+            list[i] = pivot;
+            test(list,l,i-1);
+            test(list,i+1,r);
+        }
+    }
+
 
 
     //base64加解密

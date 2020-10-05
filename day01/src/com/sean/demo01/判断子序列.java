@@ -17,39 +17,39 @@ public class 判断子序列 {
 //        System.out.println(array.get(array.size()-1));
     }
 
-    public static  boolean isSubsequence(String s, String t) {
+    public static boolean isSubsequence(String s, String t) {
 
         String pattern = "";
         char[] charsS = s.toCharArray();
         for (char c : charsS) {
-            pattern += ".*?"+c+".*?";
+            pattern += ".*?" + c + ".*?";
         }
         System.out.println(pattern);
 
         Pattern r = Pattern.compile(pattern);
         Matcher m = r.matcher(t);
 
-        if (m.find()){
+        if (m.find()) {
             return true;
         }
         return false;
 
     }
 
-    public static boolean method(String s , String t){
+    public static boolean method(String s, String t) {
         char[] charsT = t.toCharArray();
         char[] charsS = s.toCharArray();
         int counterOfT = 0;
         int counterOfS = 0;
 
-        for (int i = 0,j=0; i < charsS.length && j<charsT.length;) {
-            if (t.charAt(i) == s.charAt(i)){
+        for (int i = 0, j = 0; i < charsS.length && j < charsT.length; ) {
+            if (t.charAt(i) == s.charAt(i)) {
                 j++;
                 counterOfS = j++;
             }
             counterOfT = i++;
         }
-        return counterOfT ==counterOfS;
+        return counterOfT == counterOfS;
 
 //        for (int i = 0; i < charsS.length; i++) {
 //
