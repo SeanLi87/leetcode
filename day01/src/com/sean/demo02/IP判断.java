@@ -2,6 +2,7 @@ package com.sean.demo02;
 
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
+import org.junit.platform.commons.util.StringUtils;
 
 public class IP判断 {
 
@@ -44,6 +45,7 @@ public class IP判断 {
         Assertions.assertFalse(ifIp("1.1..1.1"));
         Assertions.assertFalse(ifIp("1.1..1"));
         //包含非数字字符的字符串
+        Assertions.assertFalse(ifIp("1.1.01.1"));
         Assertions.assertFalse(ifIp("1.1.1.a"));
         Assertions.assertFalse(ifIp("1.1.1.*"));
         //分隔符错误
@@ -56,8 +58,8 @@ public class IP判断 {
 
     public static void main(String[] args) {
 
-        String nums1 = "123";
-        String nums2 = "456";
+        System.out.println(ifIp("1.1.01.1"));
+        System.out.println(ifIp("1.1. 1.1"));
 
 
 
@@ -77,6 +79,9 @@ public class IP判断 {
         }
         try {
             for (String node : nodes) {
+                if (node.charAt(0)=='0'){
+                    return false;
+                }
                 if (Integer.valueOf(node) >= 0 && Integer.valueOf(node) <= 255) {
                     continue;
                 }
